@@ -28,6 +28,20 @@ const io = new Server(server,{
 
 io.use(socketAuth);
 
+io.on("connection",(socket) => {
+    console.log("User connected",socket.id);
+    console.log(socket.user);
+    socket.on('message',(msg) => {
+        io.emit('receive-message',{
+            socketId:socket.id,
+            message:msg
+        })
+    })
+    socket.on('disconnect',() => {
+        console.log("Disconnected",socket.id)
+    })
+})
+
 server.listen(3000, () => {
   console.log("Server Running");
 });
