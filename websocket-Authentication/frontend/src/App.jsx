@@ -18,7 +18,7 @@ const App = () => {
       <Routes>
         <Route
         path='/chat'
-        element={loginStatus ? <Chat/> : <Login setUser={setloginStatus}/>}
+        element={loginStatus ? <Chat setUser={setloginStatus}/> : <Login setUser={setloginStatus}/>}
         />
       </Routes>
     </>

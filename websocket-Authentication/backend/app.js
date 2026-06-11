@@ -33,11 +33,10 @@ io.use(socketAuth);
 
 io.on("connection",(socket) => {
     console.log("User connected",socket.id);
-    console.log(socket.user);
-    socket.on('message',(msg) => {
-        io.emit('receive-message',{
+    socket.on("send-message",(data) => {
+        io.emit("receive-message",{
             socketId:socket.id,
-            message:msg
+            message:data.message
         })
     })
     socket.on('disconnect',() => {
