@@ -23,10 +23,10 @@ export const login = async (req, res) => {
    );
  
    res.cookie("accessToken", accessToken, {
-     httpOnly: true,
-     secure: false,
-     sameSite: "lax",
-   });
+  httpOnly: true,
+  secure: false,
+  sameSite: "lax",
+});
  
    res.status(200).send({
      message: "Login Success",

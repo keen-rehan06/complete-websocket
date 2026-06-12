@@ -6,9 +6,6 @@ const chat = ({setUser}) => {
   const accessToken = localStorage.getItem("accessToken");
   const socket = useMemo(() => {
     return io("http://localhost:3000",{
-      auth:{
-        token:accessToken,
-      },
       withCredentials: true,
     })
 },[])
@@ -43,7 +40,7 @@ const chat = ({setUser}) => {
     <h1>chatting</h1>
       <Logout setUser={setUser}/>
     </div>
-    <h1>{soketId}</h1>
+    <h1>Socket Id:{soketId}</h1>
     <form onSubmit={sendMessage}>
       <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}/>
       <button>Send</button>
