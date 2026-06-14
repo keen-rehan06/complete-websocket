@@ -4,12 +4,21 @@
   import { Server } from "socket.io";
   import { socketAuth } from "./socketAuth.js";
   import cookieParser from "cookie-parser";
-
+  import userRoute from "./user.route.js"
+  import {v4 as uuid} from "uuid"
+  import { configDotenv } from "dotenv";
+  configDotenv({path:"./.env"});
   const app = express();
   const server = createServer(app);
 
+  app.use(express.json({}))
   app.use(cookieParser())
+  app.use(cors({
+    origin:"http://localhost:5173",
+    credentials:true
+  }));
 
+  app.use("/",userRoute);
   const io = new Server(server, {
     cors: {
       origin: "http://localhost:5173",

@@ -4,7 +4,7 @@ export const login = async (req, res) => {
  try {
    const { email, password } = req.body;
  
-   if (email !== "test@gmail.com" || password !== "123456") {
+   if (email !== "rehan@gmail.com" || password !== "123456") {
      return res.status(401).json({
        success: false,
        message: "Invalid credentials",
@@ -13,7 +13,7 @@ export const login = async (req, res) => {
  
    const accessToken = jwt.sign(
      {
-       id: "123",
+       id: email,
        email,
      },
      process.env.JWT_SECRET,
