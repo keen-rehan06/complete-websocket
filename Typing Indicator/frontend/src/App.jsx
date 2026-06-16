@@ -13,8 +13,6 @@ const App = () => {
       setSocketId(socket.id);
     });
     socket.on("user-typing", (socketId) => {
-      console.log("received:", socketId);
-      console.log("my id:", socket.id);
       setTypingUser(socketId);
     });
     socket.on("stop-user-typing", () => {
