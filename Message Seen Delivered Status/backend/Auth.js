@@ -12,7 +12,7 @@ router.post("/register", async (req, res) => {
   const user = await User.create({
     name: req.body.name,
     email: req.body.email,
-    password: hash
+    password: hash,  
   });
 
   res.json(user);
@@ -21,15 +21,10 @@ router.post("/register", async (req, res) => {
 // login
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
-
   if (!user) return res.json({ error: "User not found" });
-
   const match = await bcrypt.compare(req.body.password, user.password);
-
   if (!match) return res.json({ error: "Wrong password" });
-
   const token = generateToken(user);
-
   res.json({ token, user });
 });
 
