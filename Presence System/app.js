@@ -47,6 +47,7 @@ io.on("connection",(socket) =>{
 });
 
 app.get("/",(req,res)=>{
+    // console.log(onlineUsers)
     res.send({
         users:Array.from(onlineUsers.entries())
     })
